@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="container-fluid">
+  <div class="signup-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Login</h2>
+      <hr />
+
+      <app-inputfield
+        [label]="'envelope'"
+        [type]="'email'"
+        [placeholder]="'Email'"
+        formControlName="email"
+        required
+      ></app-inputfield>
+      <div>
+        <small *ngIf="'errorMessage.emailError'">
+          {{ errorMessage.emailError }}
+        </small>
+      </div>
+
+      <app-inputfield
+        [label]="'key'"
+        [type]="'password'"
+        [placeholder]="'Password'"
+        formControlName="password"
+        required
+      ></app-inputfield>
+      <div>
+        <small *ngIf="'errorMessage.passwordError'">
+          {{ errorMessage.passwordError }}
+        </small>
+</div>
+
+      <br />
+
+      <app-button [type]="'submit'" [buttonLabel]="'Log in'"></app-button>
+    </form>
+    <div class="text-center">
+      Create new account? <a routerLink="/signup">Sign Up</a>
+    </div>
+  </div>
+</div>

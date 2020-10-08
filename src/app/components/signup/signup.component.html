@@ -12,13 +12,9 @@
         required
       ></app-inputfield>
       <span>
-        <small
-          *ngIf="
-            signupForm.controls.userName.dirty ||
-            signupForm.controls.userName.touched
-          "
-          >errorMessage</small
-        >
+        <small *ngIf="'errorMessage.userNameError'">
+          {{ errorMessage.userNameError }}
+        </small>
       </span>
       <app-inputfield
         [label]="'envelope'"
@@ -28,7 +24,9 @@
         required
       ></app-inputfield>
       <span>
-        <small *ngIf="''">errorMessage</small>
+        <small *ngIf="'errorMessage.emailError'">
+          {{ errorMessage.emailError }}
+        </small>
       </span>
 
       <app-inputfield
@@ -39,7 +37,9 @@
         required
       ></app-inputfield>
       <span>
-        <small *ngIf="''">errorMessage</small>
+        <small *ngIf="'errorMessage.passwordError'">
+          {{ errorMessage.passwordError }}
+        </small>
       </span>
 
       <app-inputfield
@@ -49,9 +49,11 @@
         formControlName="confirmPassword"
       ></app-inputfield>
       <span>
-        <small *ngIf="''">errorMessage</small>
+        <small *ngIf="'errorMessage.confirmPasswordError'">
+          {{ errorMessage.confirmPasswordError }}
+        </small>
       </span>
-
+      <br />
       <div class="form-group">
         <label class="form-check-label"
           ><input type="checkbox" required="required" /> I accept the
