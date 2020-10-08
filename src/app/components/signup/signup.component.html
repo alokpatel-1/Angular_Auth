@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class="signup-form">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <h2>Sign Up</h2>
+      <p>Please fill in this form to create an account!</p>
+      <hr />
+      <app-inputfield
+        [label]="'user'"
+        [type]="'text'"
+        [placeholder]="'Name'"
+        formControlName="userName"
+        required
+      ></app-inputfield>
+      <span>
+        <small
+          *ngIf="
+            signupForm.controls.userName.dirty ||
+            signupForm.controls.userName.touched
+          "
+          >errorMessage</small
+        >
+      </span>
+      <app-inputfield
+        [label]="'envelope'"
+        [type]="'text'"
+        [placeholder]="'Email'"
+        formControlName="email"
+        required
+      ></app-inputfield>
+      <span>
+        <small *ngIf="''">errorMessage</small>
+      </span>
+
+      <app-inputfield
+        [label]="'key'"
+        [type]="'password'"
+        [placeholder]="'Password'"
+        formControlName="password"
+        required
+      ></app-inputfield>
+      <span>
+        <small *ngIf="''">errorMessage</small>
+      </span>
+
+      <app-inputfield
+        [label]="'check'"
+        [type]="'password'"
+        [placeholder]="'Confirm Password'"
+        formControlName="confirmPassword"
+      ></app-inputfield>
+      <span>
+        <small *ngIf="''">errorMessage</small>
+      </span>
+
+      <div class="form-group">
+        <label class="form-check-label"
+          ><input type="checkbox" required="required" /> I accept the
+          <a href="#">Terms of Use</a> &amp;
+          <a href="#">Privacy Policy</a></label
+        >
+      </div>
+      <span>
+        <small *ngIf="''">errorMessage</small>
+      </span>
+
+      <app-button [type]="'submit'" [buttonLabel]="'Sign Up'"></app-button>
+    </form>
+    <div class="text-center">
+      Already have an account? <a routerLink="/login">Login here</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="form-group" style="margin-bottom: 0px; margin-top: 1rem">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="fa fa-{{ label }}"> </i>
+      </span>
+    </div>
+    <input
+      [type]="type"
+      class="form-control"
+      [placeholder]="placeholder"
+      [(ngModel)]="fieldValue"
+      (ngModelChange)="onChange()"
+    />
+  </div>
+</div>
