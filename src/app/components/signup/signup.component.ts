@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AuthService } from 'src/app/services/auth.service';
+import {
+  SignupFailure,
+  SignupSuccess,
+  Signup,
+} from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-signup',
@@ -7,7 +14,11 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private store: Store
+  ) {}
   signupForm = this.fb.group({
     userName: ['', Validators.required],
     email: ['', [Validators.email, Validators.required]],
@@ -61,7 +72,8 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  submitForm(userDetails) {
+  submitForm(userDetails: FormGroup) {
+    this.store.dispatch(new Signup({ payload: this.signupForm.value }));
     console.log('user details', userDetails);
   }
 }
