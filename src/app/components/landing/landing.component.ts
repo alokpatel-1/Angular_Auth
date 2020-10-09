@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./landing.component.css'],
 })
 export class LandingComponent implements OnInit {
-  userName: string;
+  userName$: string;
   constructor(private store: Store<{ user: object }>) {
     //   this.store.select('user').subscribe((res) => {
     //     console.log('landing', res);
@@ -17,7 +17,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     this.store.select('user').subscribe((res) => {
       if (res['user'] !== null) {
-        this.userName =
+        this.userName$ =
           res['user']['firstName'] + ' ' + res['user']['lastName'];
       }
     });
