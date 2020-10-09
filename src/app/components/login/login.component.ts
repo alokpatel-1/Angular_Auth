@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { LoginRequest } from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +18,14 @@ export class LoginComponent implements OnInit {
     emailError: '',
     passwordError: '',
   };
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.loginForm.status !== 'INVALID') {
       // API code
+      this.store.dispatch(new LoginRequest({ payload: this.loginForm.value }));
     } else {
       if (this.loginForm.controls.email.value === '') {
         this.errorMessage.emailError = 'This field is required';

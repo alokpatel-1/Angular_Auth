@@ -17,8 +17,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     this.store.select('user').subscribe((res) => {
       if (res['user'] !== null) {
-        this.userName$ =
-          res['user']['firstName'] + ' ' + res['user']['lastName'];
+        this.userName$ = res['user']['userName'];
       }
     });
   }

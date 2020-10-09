@@ -28,8 +28,8 @@ export function AuthReducer(state = initialState, action: userActions): State {
         ...state,
         isAuthenticated: true,
         user: {
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
+          userName: action.payload.userName,
+          userId: action.payload.userId,
         },
         error: null,
         loading: false,
@@ -41,6 +41,37 @@ export function AuthReducer(state = initialState, action: userActions): State {
         ...state,
         user: null,
         isAuthenticated: false,
+        error: action.error.error,
+        loading: false,
+      };
+    }
+
+    case UserActionType.loginRequest: {
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: true,
+      };
+    }
+
+    case UserActionType.loginSuccess: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: {
+          userName: action.payload.userName,
+          userId: action.payload.userId,
+        },
+        error: null,
+        loading: false,
+      };
+    }
+
+    case UserActionType.loginFailure: {
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
         error: action.error.error,
         loading: false,
       };

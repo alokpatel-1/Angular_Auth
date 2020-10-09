@@ -9,9 +9,11 @@ export class AuthService {
   private basicUrl = `http://localhost:3000/`;
   constructor(private http: HttpClient) {}
 
-  signupRequest(userdetails): any {
+  signupRequest(userdetails: any): any {
     return this.http.post(`${this.basicUrl}signup`, { userdetails });
   }
 
-  loginRequest(userCredentials): any {}
+  loginRequest(userCredentials: any): any {
+    return this.http.post(`${this.basicUrl}login`, { userCredentials });
+  }
 }
