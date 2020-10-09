@@ -6,6 +6,7 @@ import {
   UserActionType,
   LoginSuccess,
   LoginFail,
+  LogoutSuccess,
 } from '../actions/auth.actions';
 import { map, mergeMap, catchError, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -65,5 +66,21 @@ export class AuthEffect {
   loginError = this.action$.pipe(
     ofType(UserActionType.loginFailure),
     tap((error) => {})
+  );
+
+  @Effect()
+  logoutRequest = this.action$.pipe(
+    ofType(UserActionType.logoutRequest),
+    mergeMap(async () => new LogoutSuccess()),
+    catchError(() => EMPTY)
+  );
+
+  @Effect({ dispatch: false })
+  logoursuccess = this.action$.pipe(
+    ofType(UserActionType.logoutSuccess),
+    tap(() => {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    })
   );
 }

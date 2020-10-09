@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { LogoutRequest } from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -16,5 +17,10 @@ export class HeaderComponent implements OnInit {
         this.userName$ = res['user']['userName'];
       }
     });
+  }
+
+  UserLogout() {
+    this.store.dispatch(new LogoutRequest());
+    console.log('logout');
   }
 }

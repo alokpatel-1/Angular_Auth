@@ -9,6 +9,9 @@ export enum UserActionType {
   loginRequest = '[LOGIN REQUEST] Login request',
   loginSuccess = '[LOGIN SUCCESS] Login success',
   loginFailure = '[LOGIN FAIL] Login fail',
+
+  logoutRequest = '[LOGOUT REQUEST] Logout request',
+  logoutSuccess = '[LOGOUT SUCCESS] Logout success',
 }
 
 export class Signup implements Action {
@@ -41,10 +44,21 @@ export class LoginFail implements Action {
   constructor(public error: any) {}
 }
 
+export class LogoutRequest implements Action {
+  readonly type = UserActionType.logoutRequest;
+  constructor() {}
+}
+export class LogoutSuccess implements Action {
+  readonly type = UserActionType.logoutSuccess;
+  constructor() {}
+}
+
 export type userActions =
   | Signup
   | SignupSuccess
   | SignupFailure
   | LoginRequest
   | LoginSuccess
-  | LoginFail;
+  | LoginFail
+  | LogoutRequest
+  | LogoutSuccess;

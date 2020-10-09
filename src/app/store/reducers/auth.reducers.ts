@@ -77,6 +77,27 @@ export function AuthReducer(state = initialState, action: userActions): State {
       };
     }
 
+    case UserActionType.logoutRequest: {
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: true,
+      };
+    }
+
+    case UserActionType.logoutSuccess: {
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {
+          userName: '',
+          userId: '',
+        },
+        error: null,
+        loading: false,
+      };
+    }
+
     default:
       return state;
   }

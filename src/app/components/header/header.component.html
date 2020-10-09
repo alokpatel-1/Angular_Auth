@@ -47,14 +47,14 @@
         >
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <span class="form-inline my-2 my-lg-0">
       <input
         class="form-control mr-sm-2"
         type="search"
         placeholder="Search"
         aria-label="Search"
       />
-      <button class="btn btn-outline-success m-2 my-sm-0" type="submit">
+      <button class="btn btn-outline-success m-2 my-sm-0" type="button">
         Search
       </button>
       <button
@@ -65,11 +65,13 @@
       >
         Login
       </button>
+      <!-- <app-button></app-button> -->
       <button
         *ngIf="!userName$"
         routerLink="/signup"
         class="btn btn-outline-success m-2 my-sm-0"
         type="submit"
+        onclick="UserLogout()"
       >
         Signup
       </button>
@@ -109,11 +111,15 @@
                 Another action
               </button>
               <div class="dropdown-divider"></div>
-              <button type="submit" class="btn btn-danger w-100">Logout</button>
+              <form (ngSubmit)="UserLogout()">
+                <button type="submit" class="btn btn-danger w-100">
+                  Logout
+                </button>
+              </form>
             </div>
           </li>
         </ul>
       </div>
-    </form>
+    </span>
   </div>
 </nav>
