@@ -3,7 +3,9 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h2>Login</h2>
       <hr />
-
+      <div *ngIf="errorMsg$" class="alert alert-danger" role="alert">
+        {{ errorMsg$ }}
+      </div>
       <app-inputfield
         [label]="'envelope'"
         [type]="'email'"
@@ -28,7 +30,7 @@
         <small *ngIf="'errorMessage.passwordError'">
           {{ errorMessage.passwordError }}
         </small>
-</div>
+      </div>
 
       <br />
 

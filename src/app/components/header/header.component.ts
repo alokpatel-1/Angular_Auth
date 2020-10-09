@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  userName$: string;
+  constructor(private store: Store<{ user: object }>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.select('user').subscribe((res) => {
+      if (res['user'] !== null) {
+        this.userName$ = res['user']['userName'];
+      }
+    });
+  }
 }

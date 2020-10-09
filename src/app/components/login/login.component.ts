@@ -9,6 +9,7 @@ import { LoginRequest } from 'src/app/store/actions/auth.actions';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  errorMsg$: any;
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: [''],
@@ -18,7 +19,11 @@ export class LoginComponent implements OnInit {
     emailError: '',
     passwordError: '',
   };
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store<{ user: object }>) {
+    this.store.select('user').subscribe((res) => {
+      this.errorMsg$ = res['error'];
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -39,7 +44,5 @@ export class LoginComponent implements OnInit {
         this.errorMessage.passwordError = 'This field is required';
       }
     }
-    console.log(this.loginForm.value);
-    console.log('email', this.loginForm.controls.email.status);
   }
 }

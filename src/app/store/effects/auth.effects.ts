@@ -44,9 +44,7 @@ export class AuthEffect {
     mergeMap((payload) =>
       this.autheService.loginRequest(payload).pipe(
         map((response) => new LoginSuccess(response)),
-        catchError(async (error: any) => {
-          new LoginFail({ error: error.error });
-        })
+        catchError(async (error: any) => new LoginFail({ error: error.error }))
       )
     )
   );
@@ -63,8 +61,9 @@ export class AuthEffect {
     })
   );
 
-  // @Effect({ dispatch: false })
-  // loginSuccess = this.action$.pipe(
-  //   ofType(UserActionType.loginSuccess),
-  //   tap((data))=>{});
+  @Effect({ dispatch: false })
+  loginError = this.action$.pipe(
+    ofType(UserActionType.loginFailure),
+    tap((error) => {})
+  );
 }
