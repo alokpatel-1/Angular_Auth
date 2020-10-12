@@ -12,6 +12,25 @@ export enum UserActionType {
 
   logoutRequest = '[LOGOUT REQUEST] Logout request',
   logoutSuccess = '[LOGOUT SUCCESS] Logout success',
+
+  profileRequest = '[PROFILE REQUEST] profile request',
+  profileReqSuccess = '[PROFILE SUCCESS] Profile success',
+  profileReqFail = '[PROFILE FAIL] Profile fail',
+}
+
+export class ProfileRequest implements Action {
+  readonly type = UserActionType.profileRequest;
+  constructor(public payload: any) {
+    console.log('profile action', payload);
+  }
+}
+export class ProfileReqSuccess implements Action {
+  readonly type = UserActionType.profileReqSuccess;
+  constructor(public payload: any) {}
+}
+export class ProfileReqFail implements Action {
+  readonly type = UserActionType.profileReqFail;
+  constructor(public error: any) {}
 }
 
 export class Signup implements Action {
@@ -61,4 +80,7 @@ export type userActions =
   | LoginSuccess
   | LoginFail
   | LogoutRequest
-  | LogoutSuccess;
+  | LogoutSuccess
+  | ProfileRequest
+  | ProfileReqSuccess
+  | ProfileReqFail;

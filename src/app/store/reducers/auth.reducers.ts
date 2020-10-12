@@ -98,6 +98,32 @@ export function AuthReducer(state = initialState, action: userActions): State {
       };
     }
 
+    case UserActionType.profileRequest: {
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    }
+    case UserActionType.profileReqSuccess: {
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    }
+    case UserActionType.profileReqFail: {
+      return {
+        ...state,
+        user: {
+          userName: '',
+          userId: '',
+        },
+        loading: false,
+        error: action.error.error,
+      };
+    }
+
     default:
       return state;
   }

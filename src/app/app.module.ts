@@ -13,11 +13,14 @@ import { LoadingComponent } from "./shared/loading/loading.component";
 import { LoginComponent } from './components/login/login.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthEffect } from './store/effects/auth.effects';
 import { AuthReducer } from './store/reducers/auth.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AuthGuard } from './authGuard/auth.guard';
+import { TokenInterceptorService } from "./services/token-interceptor.service";
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { environment } from '../environments/environment';
     InputfieldComponent,
     ButtonComponent,
     LoginComponent,
-    LoadingComponent
+    LoadingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,11 @@ import { environment } from '../environments/environment';
       logOnly: environment.production,
     }),
   ],
-  providers: [],
+  providers: [AuthGuard,{
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

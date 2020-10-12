@@ -16,4 +16,20 @@ export class AuthService {
   loginRequest(userCredentials: any): any {
     return this.http.post(`${this.basicUrl}login`, { userCredentials });
   }
+
+  loggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  landing() {
+    return this.http.get(`${this.basicUrl}landing`);
+  }
+
+  getProfile(userId) {
+    return this.http.get(`${this.basicUrl}profile`, { params: { userId } });
+  }
 }

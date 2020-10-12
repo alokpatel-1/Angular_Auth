@@ -65,7 +65,16 @@
       >
         Login
       </button>
-      <!-- <app-button></app-button> -->
+
+      <button
+        routerLink="/profile"
+        *ngIf="userName$"
+        class="btn btn-primary"
+        type="button"
+        (click)='Profile()'
+      >
+        {{ userName$ }}
+      </button>
       <button
         *ngIf="!userName$"
         routerLink="/signup"
@@ -100,9 +109,6 @@
               />
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <button class="dropdown-item" type="button">
-                {{ userName$ }}
-              </button>
               <button class="dropdown-item" type="button">Profile</button>
               <button class="dropdown-item" type="button">
                 Another action

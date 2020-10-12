@@ -7,6 +7,8 @@ import {
   LoginSuccess,
   LoginFail,
   LogoutSuccess,
+  ProfileReqSuccess,
+  ProfileReqFail,
 } from '../actions/auth.actions';
 import { map, mergeMap, catchError, tap, delay } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -26,7 +28,7 @@ export class AuthEffect {
   signupUser = this.action$.pipe(
     ofType(UserActionType.signup),
     map((action) => action['payload']),
-    delay(2000),
+    delay(4000),
     mergeMap((payload) =>
       this.autheService.signupRequest(payload).pipe(
         map((response) => new SignupSuccess(response)),
@@ -38,7 +40,6 @@ export class AuthEffect {
   @Effect({ dispatch: false })
   signupSuccess = this.action$.pipe(
     ofType(UserActionType.signupSuccess),
-    delay(2000),
     tap((user) => {
       if (user) {
         this.user = user;
@@ -52,7 +53,7 @@ export class AuthEffect {
   loginrequest = this.action$.pipe(
     ofType(UserActionType.loginRequest),
     map((action) => action['payload']),
-    delay(2000),
+    delay(4000),
     mergeMap((payload) =>
       this.autheService.loginRequest(payload).pipe(
         map((response) => new LoginSuccess(response)),
@@ -64,7 +65,6 @@ export class AuthEffect {
   @Effect({ dispatch: false })
   loginSuccess = this.action$.pipe(
     ofType(UserActionType.loginSuccess),
-    delay(2000),
     tap((user) => {
       if (user) {
         this.user = user;
@@ -72,13 +72,6 @@ export class AuthEffect {
         this.router.navigate(['/landing']);
       }
     })
-  );
-
-  @Effect({ dispatch: false })
-  loginError = this.action$.pipe(
-    ofType(UserActionType.loginFailure),
-    delay(2000),
-    tap((error) => {})
   );
 
   @Effect()
@@ -89,10 +82,33 @@ export class AuthEffect {
   );
 
   @Effect({ dispatch: false })
-  logoursuccess = this.action$.pipe(
+  logoutsuccess = this.action$.pipe(
     ofType(UserActionType.logoutSuccess),
     tap(() => {
       localStorage.removeItem('token');
+      this.router.navigate(['/login']);
+    })
+  );
+
+  // userProfile Effect
+
+  @Effect()
+  profileReq = this.action$.pipe(
+    ofType(UserActionType.profileRequest),
+    map((action) => action['payload']),
+    delay(4000),
+    mergeMap((payload) =>
+      this.autheService.getProfile(payload).pipe(
+        map((response) => new ProfileReqSuccess(response)),
+        catchError(async (error) => new ProfileReqFail({ error: error.error }))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  profileFail = this.action$.pipe(
+    ofType(UserActionType.profileReqFail),
+    tap(() => {
       this.router.navigate(['/login']);
     })
   );
