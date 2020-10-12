@@ -10,11 +10,18 @@ import { Signup } from 'src/app/store/actions/auth.actions';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
+  loading:boolean;
+  errorMsg: String
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private store: Store
-  ) {}
+    private store: Store<{user:object}>
+  ) {
+    this.store.select('user').subscribe(res=>{
+      this.loading = res['loading'];
+      this.errorMsg =res['error'] 
+    })
+  }
   signupForm = this.fb.group({
     userName: ['', Validators.required],
     email: ['', [Validators.email, Validators.required]],

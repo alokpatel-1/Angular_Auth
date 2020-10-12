@@ -33,7 +33,9 @@
       </div>
 
       <br />
-
+      <span *ngIf="loading">
+      <app-loading></app-loading>
+    </span>
       <app-button [type]="'submit'" [buttonLabel]="'Log in'"></app-button>
     </form>
     <div class="text-center">

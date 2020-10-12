@@ -27,8 +27,11 @@
         <small *ngIf="'errorMessage.emailError'">
           {{ errorMessage.emailError }}
         </small>
+        <small *ngIf="errorMsg">
+          {{ errorMsg }}
+        </small>
       </span>
-
+      
       <app-inputfield
         [label]="'key'"
         [type]="'password'"
@@ -65,6 +68,9 @@
         <small *ngIf="''">errorMessage</small>
       </span>
 
+      <span *ngIf="loading">
+        <app-loading></app-loading>
+      </span>
       <app-button [type]="'submit'" [buttonLabel]="'Sign Up'"></app-button>
     </form>
     <div class="text-center">

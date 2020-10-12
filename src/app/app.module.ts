@@ -9,6 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { InputfieldComponent } from './shared/inputfield/inputfield.component';
 import { ButtonComponent } from './shared/button/button.component';
+import { LoadingComponent } from "./shared/loading/loading.component";
 import { LoginComponent } from './components/login/login.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     InputfieldComponent,
     ButtonComponent,
     LoginComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

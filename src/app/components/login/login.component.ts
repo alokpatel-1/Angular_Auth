@@ -10,6 +10,7 @@ import { LoginRequest } from 'src/app/store/actions/auth.actions';
 })
 export class LoginComponent implements OnInit {
   errorMsg$: any;
+  loading:boolean
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: [''],
@@ -22,10 +23,13 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store<{ user: object }>) {
     this.store.select('user').subscribe((res) => {
       this.errorMsg$ = res['error'];
+      this.loading = res['loading']
     });
   }
-
-  ngOnInit(): void {}
+  
+  ngOnInit(): void {
+    
+  }
 
   onSubmit(): void {
     if (this.loginForm.status !== 'INVALID') {
