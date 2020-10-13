@@ -9,6 +9,7 @@
         [type]="'text'"
         [placeholder]="'Name'"
         formControlName="userName"
+        (removeErrorMessage)="onfocus('user')"
         required
       ></app-inputfield>
       <span>
@@ -21,6 +22,7 @@
         [type]="'text'"
         [placeholder]="'Email'"
         formControlName="email"
+        (removeErrorMessage)="onfocus('envelope')"
         required
       ></app-inputfield>
       <span>
@@ -37,6 +39,7 @@
         [type]="'password'"
         [placeholder]="'Password'"
         formControlName="password"
+        (removeErrorMessage)="onfocus('key')"
         required
       ></app-inputfield>
       <span>
@@ -50,6 +53,7 @@
         [type]="'password'"
         [placeholder]="'Confirm Password'"
         formControlName="confirmPassword"
+        (removeErrorMessage)="onfocus('check')"
       ></app-inputfield>
       <span>
         <small *ngIf="'errorMessage.confirmPasswordError'">

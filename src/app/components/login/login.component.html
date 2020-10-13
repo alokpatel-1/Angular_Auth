@@ -11,6 +11,7 @@
         [type]="'email'"
         [placeholder]="'Email'"
         formControlName="email"
+        (removeErrorMessage)="onfocus('email')"
         required
       ></app-inputfield>
       <div>
@@ -24,18 +25,22 @@
         [type]="'password'"
         [placeholder]="'Password'"
         formControlName="password"
+        (removeErrorMessage)="onfocus('password')"
         required
       ></app-inputfield>
+
       <div>
         <small *ngIf="'errorMessage.passwordError'">
           {{ errorMessage.passwordError }}
         </small>
       </div>
+      <a>Forgot Password ?</a>
+      <br />
 
       <br />
       <span *ngIf="loading">
-      <app-loading></app-loading>
-    </span>
+        <app-loading></app-loading>
+      </span>
       <app-button [type]="'submit'" [buttonLabel]="'Log in'"></app-button>
     </form>
     <div class="text-center">

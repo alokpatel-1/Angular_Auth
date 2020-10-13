@@ -10,17 +10,17 @@ import { Signup } from 'src/app/store/actions/auth.actions';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  loading:boolean;
-  errorMsg: String
+  loading: boolean;
+  errorMsg: String;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private store: Store<{user:object}>
+    private store: Store<{ user: object }>
   ) {
-    this.store.select('user').subscribe(res=>{
+    this.store.select('user').subscribe((res) => {
       this.loading = res['loading'];
-      this.errorMsg =res['error'] 
-    })
+      this.errorMsg = res['error'];
+    });
   }
   signupForm = this.fb.group({
     userName: ['', Validators.required],
@@ -78,5 +78,20 @@ export class SignupComponent implements OnInit {
   submitForm(userDetails: FormGroup) {
     this.store.dispatch(new Signup({ payload: this.signupForm.value }));
     console.log('user details', userDetails);
+  }
+
+  onfocus(fieldType) {
+    if (fieldType === 'user') {
+      this.errorMessage.userNameError = '';
+    }
+    if (fieldType === 'envelope') {
+      this.errorMessage.emailError = '';
+    }
+    if (fieldType === 'key') {
+      this.errorMessage.passwordError = '';
+    }
+    if (fieldType === 'check') {
+      this.errorMessage.confirmPasswordError = '';
+    }
   }
 }

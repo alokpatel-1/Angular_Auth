@@ -1,4 +1,11 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -17,6 +24,8 @@ export class InputfieldComponent implements OnInit {
   @Input() type: String;
   @Input() placeholder: String;
   @Input() label: String;
+
+  @Output() removeErrorMessage = new EventEmitter();
 
   fieldValue = '';
 
