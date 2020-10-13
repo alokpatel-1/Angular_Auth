@@ -1,0 +1,65 @@
+<div class="container">
+  <h2 class="page-header">
+    Table
+    <small class="divider">Sort indicators</small>
+  </h2>
+
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th class="sortable asc">
+          <i
+            class="fa fa-long-arrow-up p-1"
+            style="cursor: pointer"
+            aria-hidden="true"
+          ></i>
+          <i
+            class="fa fa-long-arrow-down p-1"
+            style="cursor: pointer"
+            aria-hidden="true"
+          ></i>
+          Name
+        </th>
+        <th class="sortable">
+          <i
+            *ngIf="sortDataInDecendingOrder"
+            class="fa fa-long-arrow-up p-1"
+            (click)="sortInDecendingOrder()"
+            style="cursor: pointer"
+            aria-hidden="true"
+          ></i>
+          <i
+            *ngIf="sortDataInAscendingOrder"
+            (click)="sortInAscendingOrder()"
+            class="fa fa-long-arrow-down p-1"
+            style="cursor: pointer"
+            aria-hidden="true"
+          ></i>
+          Rating
+        </th>
+        <th class="sortable">
+          <i
+            class="fa fa-long-arrow-up p-1"
+            style="cursor: pointer"
+            aria-hidden="true"
+          ></i>
+          <i
+            class="fa fa-long-arrow-down p-1"
+            style="cursor: pointer"
+            aria-hidden="true"
+          ></i>
+          Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.product }}</td>
+        <td>{{ item.rating }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

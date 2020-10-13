@@ -75,6 +75,7 @@ export class AuthEffect {
   @Effect()
   logoutRequest = this.action$.pipe(
     ofType(UserActionType.logoutRequest),
+    delay(4000),
     mergeMap(async () => new LogoutSuccess()),
     catchError(() => EMPTY)
   );

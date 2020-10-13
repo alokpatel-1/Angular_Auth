@@ -32,4 +32,8 @@ export class AuthService {
   getProfile(userId) {
     return this.http.get(`${this.basicUrl}profile`, { params: { userId } });
   }
+
+  getDatafromJson() {
+    return this.http.get('http://localhost:2000/products');
+  }
 }
