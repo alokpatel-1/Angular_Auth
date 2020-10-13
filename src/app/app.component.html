@@ -1,2 +1,7 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<span *ngIf="loading">
+  <app-loading></app-loading>
+</span>
+<span *ngIf="!loading">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+</span>

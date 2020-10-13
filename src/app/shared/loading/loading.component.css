@@ -1,36 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #9ab8f1;
+  opacity: 0.5;
+}
+
 .loader {
-  /* text-align: center; */
-  /* vertical-align: middle; */
+  text-align: center;
+  vertical-align: middle;
   position: absolute;
   display: flex;
-  /* background: rgb(156, 155, 155); */
-  padding: 45px;
-  /* box-shadow: 0px 40px 60px -20px rgba(17, 17, 17, 0.97); */
-  opacity: 0.75;
+  background: white;
+  padding: 150px;
+  box-shadow: 0px 40px 60px -20px rgba(0, 0, 0, 0.9);
   z-index: 1;
-  margin-left: 140px;
+  /* opacity: 0.4; */
 }
 
 .loader span {
   display: block;
   width: 20px;
   height: 20px;
-  background: rgb(241, 88, 88);
+  background: rgb(212, 25, 25);
   border-radius: 50%;
   margin: 0 5px;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .loader span:nth-child(2) {
-  background: #e4351e;
+  background: #1c19dd;
 }
 
 .loader span:nth-child(3) {
-  background: #0578c0;
+  background: #064369;
 }
 
 .loader span:nth-child(4) {
-  background: #08a8a3;
+  background: #04c2bb;
 }
 
 .loader span:not(:last-child) {

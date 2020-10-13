@@ -86,6 +86,7 @@ export class SignupComponent implements OnInit {
     }
     if (fieldType === 'envelope') {
       this.errorMessage.emailError = '';
+      this.errorMsg = '';
     }
     if (fieldType === 'key') {
       this.errorMessage.passwordError = '';

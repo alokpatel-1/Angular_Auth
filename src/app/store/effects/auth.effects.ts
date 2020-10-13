@@ -42,9 +42,7 @@ export class AuthEffect {
     ofType(UserActionType.signupSuccess),
     tap((user) => {
       if (user) {
-        this.user = user;
-        localStorage.setItem('token', this.user.payload.token);
-        this.router.navigate(['/landing']);
+        this.router.navigate(['/login']);
       }
     })
   );
