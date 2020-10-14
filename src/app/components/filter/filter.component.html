@@ -1,65 +1,91 @@
 <div class="container">
-  <h2 class="page-header">
-    Table
-    <small class="divider">Sort indicators</small>
-  </h2>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened class="example-sidenav">
+      <h3 style="text-align: center">Filter</h3>
+      <form class="items" (ngSubmit)="HandleFilter()">
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select [formControl]="category">
+            <mat-option [value]="'BOOKS_AND_REFERENCE'"
+              >BOOKS AND REFERENCE</mat-option
+            >
+            <mat-option [value]="'BEAUTY'">BEAUTY</mat-option>
+            <mat-option [value]="'BUSINESS'">BUSINESS</mat-option>
+            <mat-option [value]="'COMICS'">COMICS</mat-option>
+            <mat-option [value]="'COMMUNICATION'">COMMUNICATION</mat-option>
+            <mat-option [value]="'ART_AND_DESIGN'">ART AND DESIGN</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select [formControl]="type">
+            <mat-option [value]="'Free'">Free</mat-option>
+            <mat-option [value]="'Paid'">Paid</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox
+          formControlNmae="ropRated"
+          (change)="setState($event)"
+          color="primary"
+          >Top Rated Items</mat-checkbox
+        >
+        <input type="range" min="1000" max="5000" />
+        <br />
+        <button type="submit" mat-flat-button color="danger" class="btn">
+          Filter
+        </button>
+      </form>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <table mat-table [dataSource]="dataSource">
+        <!-- Position Column -->
+        <ng-container matColumnDef="App">
+          <th mat-header-cell *matHeaderCellDef>App</th>
+          <td mat-cell *matCellDef="let element">{{ element.App }}</td>
+        </ng-container>
 
-  <table class="table table-bordered table-hover">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th class="sortable asc">
-          <i
-            class="fa fa-long-arrow-up p-1"
-            style="cursor: pointer"
-            aria-hidden="true"
-          ></i>
-          <i
-            class="fa fa-long-arrow-down p-1"
-            style="cursor: pointer"
-            aria-hidden="true"
-          ></i>
-          Name
-        </th>
-        <th class="sortable">
-          <i
-            *ngIf="sortDataInDecendingOrder"
-            class="fa fa-long-arrow-up p-1"
-            (click)="sortInDecendingOrder()"
-            style="cursor: pointer"
-            aria-hidden="true"
-          ></i>
-          <i
-            *ngIf="sortDataInAscendingOrder"
-            (click)="sortInAscendingOrder()"
-            class="fa fa-long-arrow-down p-1"
-            style="cursor: pointer"
-            aria-hidden="true"
-          ></i>
-          Rating
-        </th>
-        <th class="sortable">
-          <i
-            class="fa fa-long-arrow-up p-1"
-            style="cursor: pointer"
-            aria-hidden="true"
-          ></i>
-          <i
-            class="fa fa-long-arrow-down p-1"
-            style="cursor: pointer"
-            aria-hidden="true"
-          ></i>
-          Price
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of data; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>{{ item.product }}</td>
-        <td>{{ item.rating }}</td>
-        <td>{{ item.price }}</td>
-      </tr>
-    </tbody>
-  </table>
+        <ng-container matColumnDef="Category">
+          <th mat-header-cell *matHeaderCellDef>Category</th>
+          <td mat-cell *matCellDef="let element">{{ element.Category }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Rating">
+          <th mat-header-cell *matHeaderCellDef>Rating</th>
+          <td mat-cell *matCellDef="let element">{{ element.Rating }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Reviews">
+          <th mat-header-cell *matHeaderCellDef>Reviews</th>
+          <td mat-cell *matCellDef="let element">{{ element.Reviews }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Type">
+          <th mat-header-cell *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let element">{{ element.Type }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef>Price</th>
+          <td mat-cell *matCellDef="let element">{{ element.Price }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Installs">
+          <th mat-header-cell *matHeaderCellDef>Installs</th>
+          <td mat-cell *matCellDef="let element">{{ element.Installs }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Size">
+          <th mat-header-cell *matHeaderCellDef>Size</th>
+          <td mat-cell *matCellDef="let element">{{ element.Size }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[10]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

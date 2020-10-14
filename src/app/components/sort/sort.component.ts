@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,14 +12,26 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SortComponent implements OnInit {
   constructor(private authService: AuthService) {}
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['id', 'product', 'rating', 'price'];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  displayedColumns: string[] = [
+    'App',
+    'Category',
+    'Rating',
+    'Reviews',
+    'Size',
+    'Installs',
+    'Price',
+    'Type',
+  ];
   dataSource: any;
 
   ngOnInit(): void {
-    this.authService.getDatafromJson().subscribe((res) => {
+    this.authService.filterData({}).subscribe((res) => {
       let tableData: any = res;
       this.dataSource = new MatTableDataSource(tableData);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 }

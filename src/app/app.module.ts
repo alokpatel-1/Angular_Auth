@@ -27,6 +27,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -48,7 +52,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatTableModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     MatSortModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatSidenavModule,
     MatPaginatorModule,
     HttpClientModule,
     EffectsModule.forRoot([AuthEffect]),
