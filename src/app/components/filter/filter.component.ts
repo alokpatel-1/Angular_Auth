@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,6 +14,8 @@ export class FilterComponent implements OnInit {
   filterParams = {};
   category = new FormControl('');
   type = new FormControl('');
+  topRated = new FormControl('');
+  range = new FormControl('');
   data: any;
   displayedColumns: string[] = [
     'App',
@@ -26,6 +29,7 @@ export class FilterComponent implements OnInit {
   ];
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private authService: AuthService, private fb: FormBuilder) {}
 
@@ -34,8 +38,9 @@ export class FilterComponent implements OnInit {
       this.data = res;
       this.dataSource = new MatTableDataSource(this.data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
-    console.log('data', this.category.value);
+    console.log('data', this.range.value);
   }
 
   setState(e) {
@@ -50,6 +55,9 @@ export class FilterComponent implements OnInit {
     if (this.type.value != '') {
       this.filterParams['Type'] = this.type.value;
     }
+    if (this.range.value != '') {
+      this.filterParams['Rating'] = { $gte: this.range.value };
+    }
   }
 
   HandleFilter() {
@@ -58,6 +66,7 @@ export class FilterComponent implements OnInit {
       this.data = res;
       this.dataSource = new MatTableDataSource(this.data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 }

@@ -31,6 +31,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ProfileComponent,
     FilterComponent,
     SortComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

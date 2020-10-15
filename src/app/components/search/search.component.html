@@ -1,0 +1,48 @@
+<div class="container-fluid" (click)="removeSearchList()">
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand">Navbar</a>
+    <form class="form-inline" (ngSubmit)="submitSearch()">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        [formControl]="searchKey"
+        (ngModelChange)="handleSearch()"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </nav>
+
+  <div class="wrapper">
+    <div class="navi">
+      <div class="searchlist" *ngIf="filteredData">
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let item of filteredData"
+            style="cursor: pointer"
+          >
+            {{ item.App }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="infoi">
+      <div class="card" *ngIf="searchList">
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let item of searchList | slice: 0:6"
+            (click)="selectedItem(item.App)"
+            style="cursor: pointer"
+          >
+            {{ item.App | slice: 0:40 }}...
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

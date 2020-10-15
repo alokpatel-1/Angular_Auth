@@ -5,6 +5,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchComponent } from './components/search/search.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SortComponent } from './components/sort/sort.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'filter', component: FilterComponent },
   { path: 'sort', component: SortComponent },
+  { path: 'search', component: SearchComponent },
   // {path:'**'}
 ];
 

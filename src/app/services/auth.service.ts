@@ -43,4 +43,8 @@ export class AuthService {
   filterData(filterparams) {
     return this.http.post(`${this.basicUrl}filterdata`, { filterparams });
   }
+
+  handlesearch(searchKey) {
+    return this.http.get(`${this.basicUrl}search`, { params: { searchKey } });
+  }
 }

@@ -1,0 +1,44 @@
+/*
+*  position: relative gives a new position context
+*/
+.wrapper {
+  position: relative;
+}
+
+/*
+*  The .navi properties are for styling only
+*  These properties can be changed or removed
+*/
+
+/*
+*  Position the #infoi element in the top-right
+*  of the .wrapper element
+*/
+#infoi {
+  position: absolute;
+  top: 0;
+  right: 40px;
+
+  /*
+  *  Styling only, the below can be changed or removed
+  *  depending on your use case
+  */
+}
+
+.card {
+  width: 350px;
+  right: 40px;
+  margin: 0;
+  box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.5);
+}
+li {
+  padding: 5px !important;
+}
+.searchlist {
+  width: 100%;
+  position: absolute;
+}
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
