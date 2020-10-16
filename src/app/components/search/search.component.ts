@@ -15,9 +15,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {}
   handleSearch() {
-    this.authService.handlesearch(this.searchKey.value).subscribe((res) => {
-      this.searchList = res;
-    });
+    this.authService
+      .handlesearch(this.searchKey.value.trim())
+      .subscribe((res) => {
+        this.searchList = res;
+      });
   }
   submitSearch() {
     if (this.searchKey.value != '') {

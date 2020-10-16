@@ -26,7 +26,7 @@
 }
 
 .card {
-  width: 350px;
+  width: 450px;
   right: 40px;
   margin: 0;
   box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.5);
@@ -41,4 +41,10 @@ li {
 .container-fluid {
   margin: 0;
   padding: 0;
+}
+h3{
+  text-align: center;
+}
+h5{
+  color: blue;
 }

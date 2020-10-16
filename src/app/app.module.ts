@@ -32,6 +32,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SearchComponent } from './components/search/search.component';
+import { DatatableComponent } from './shared/datatable/datatable.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { SearchComponent } from './components/search/search.component';
     SignupComponent,
     LandingComponent,
     InputfieldComponent,
+    DatatableComponent,
     ButtonComponent,
     LoginComponent,
     LoadingComponent,
@@ -47,6 +50,7 @@ import { SearchComponent } from './components/search/search.component';
     FilterComponent,
     SortComponent,
     SearchComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

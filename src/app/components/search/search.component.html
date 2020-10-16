@@ -3,9 +3,10 @@
     <a class="navbar-brand">Navbar</a>
     <form class="form-inline" (ngSubmit)="submitSearch()">
       <input
+        style="width: 400px"
         class="form-control mr-sm-2"
         type="search"
-        placeholder="Search"
+        placeholder="Search App Name or Category...."
         aria-label="Search"
         [formControl]="searchKey"
         (ngModelChange)="handleSearch()"
@@ -19,15 +20,17 @@
   <div class="wrapper">
     <div class="navi">
       <div class="searchlist" *ngIf="filteredData">
-        <ul class="list-group">
-          <li
-            class="list-group-item"
-            *ngFor="let item of filteredData"
-            style="cursor: pointer"
-          >
-            {{ item.App }}
-          </li>
-        </ul>
+        <table *ngIf="filteredData.length" class="table">
+          <th scope="col">SN.</th>
+          <th scope="col">App Name</th>
+          <th scope="col">Category</th>
+          <tr *ngFor="let item of filteredData; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.App }}</td>
+            <td>{{ item.Category }}</td>
+          </tr>
+        </table>
+        <h3 *ngIf="!filteredData.length">No Records Found!</h3>
       </div>
     </div>
     <div id="infoi">
