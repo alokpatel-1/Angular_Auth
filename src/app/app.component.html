@@ -1,7 +1,9 @@
 <app-header></app-header>
 <div *ngIf="loading">
-  <app-loading></app-loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <!-- <app-loading></app-loading> -->
 </div>
+
 <div *ngIf="!loading" class="mt-4">
   <router-outlet></router-outlet>
 </div>

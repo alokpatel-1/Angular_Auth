@@ -13,6 +13,10 @@ import {
 export class HeaderComponent implements OnInit {
   userName$: string;
   userId: any;
+  isAuthenticated: boolean;
+  // isLoggedIn = '';
+  isLoggedIn = localStorage.getItem('token');
+
   constructor(private store: Store<{ user: object }>) {}
 
   ngOnInit(): void {
@@ -20,13 +24,15 @@ export class HeaderComponent implements OnInit {
       if (res['user'] !== null) {
         this.userName$ = res['user']['userName'];
         this.userId = res['user']['userId'];
+        this.isAuthenticated = res['isAuthenticated'];
       }
     });
   }
 
   UserLogout() {
-    this.store.dispatch(new LogoutRequest());
-    console.log('logout');
+    if (confirm('Press OK for logout')) {
+      this.store.dispatch(new LogoutRequest());
+    }
   }
 
   Profile() {

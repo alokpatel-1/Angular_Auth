@@ -12,7 +12,7 @@ import { TableComponent } from './components/table/table.component';
 import { DatatableComponent } from './shared/datatable/datatable.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'table', pathMatch: 'full' },
+  { path: '', redirectTo: 'demo', pathMatch: 'full' },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'landing', component: LandingComponent, canActivate: [AuthGuard] },

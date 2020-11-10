@@ -58,7 +58,7 @@
         Search
       </button>
       <button
-        *ngIf="!userName$"
+        *ngIf="!isAuthenticated"
         routerLink="/login"
         class="btn btn-outline-success m-2 my-sm-0"
         type="submit"
@@ -68,25 +68,24 @@
 
       <button
         routerLink="/profile"
-        *ngIf="userName$"
+        *ngIf="isAuthenticated"
         class="btn btn-primary"
         type="button"
-        (click)='Profile()'
+        (click)="Profile()"
       >
         {{ userName$ }}
       </button>
       <button
-        *ngIf="!userName$"
+        *ngIf="!isAuthenticated"
         routerLink="/signup"
         class="btn btn-outline-success m-2 my-sm-0"
         type="submit"
-        onclick="UserLogout()"
       >
         Signup
       </button>
 
       <div
-        *ngIf="userName$"
+        *ngIf="isAuthenticated"
         class="collapse navbar-collapse"
         id="navbar-list-4"
       >
